@@ -78,6 +78,12 @@ $(document).ready(function(){
 
           }
 
+          var arrayPercentuali = [];
+          var totSales = totaleVendite(arrayImporti)
+          for (var i = 0; i < arrayImporti.length; i++) {
+            arrayPercentuali.push(Math.ceil((arrayImporti[i] / totSales)*100))
+          }
+          console.log(arrayPercentuali)
           console.log(arrayVenditori);
           console.log(arrayImporti);
           console.log(totaleVendite(arrayImporti));
@@ -94,7 +100,7 @@ $(document).ready(function(){
                       label: arrayVenditori,
                       backgroundColor: ['blue','yellow','red','green'],
                       borderColor: 'rgb(255, 99, 132)',
-                      data: arrayImporti,
+                      data: arrayPercentuali,
                   }]
               },
 
