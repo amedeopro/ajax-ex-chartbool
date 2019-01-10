@@ -20,6 +20,7 @@ $(document).ready(function(){
       var venditoreScelto = $('.venditori').val();
       var meseScelto = $('.mesi').val();
       var importoScelto  = $('#nuovaVendita').val();
+
       $.ajax({
           url: apiUrl,
           method: 'POST',
@@ -86,6 +87,7 @@ $(document).ready(function(){
                     arrayMesi.push(mese);
                     arrayImporti.push(oggettoVendite[mese])
                   }
+                  console.log(arrayImporti)
 
                 var ctx = $('#myChart');
                 var chart = new Chart(ctx, {
@@ -144,6 +146,7 @@ $(document).ready(function(){
 
                   var arrayPercentuali = [];
                   var totSales = totaleVendite(arrayImporti)
+
                   for (var i = 0; i < arrayImporti.length; i++) {
                     var num = (arrayImporti[i] / totSales)*100;
                     var numDueDecimali = num.toFixed(2);
