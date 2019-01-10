@@ -63,6 +63,7 @@ $(document).ready(function(){
           var arrayVenditori = [];
           var arrayImporti = [];
 
+
           for (var i = 0; i < data.length; i++) {
             var vendorsApi = data[i].salesman;
             var importiApi = data[i].amount;
@@ -74,10 +75,12 @@ $(document).ready(function(){
               arrayImporti.push(importiApi);
 
             }
+
           }
 
           console.log(arrayVenditori);
           console.log(arrayImporti);
+          console.log(totaleVendite(arrayImporti));
 
           var ctx = $('#myChart2');
           var chart = new Chart(ctx, {
@@ -96,13 +99,28 @@ $(document).ready(function(){
               },
 
               // Configuration options go here
-              options: {}
+              options: {
+                cutoutPercentage: 20,
+              }
           });
+
+
+
         },
         error: function(){
           alert('errore');
         }
       })
+
+      function totaleVendite(array){
+        var totale = 0;
+
+        for (var i = 0; i < array.length; i++) {
+          totale += array[i];
+        }
+
+        return totale;
+      }
 
 
 
