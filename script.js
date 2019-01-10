@@ -81,7 +81,9 @@ $(document).ready(function(){
           var arrayPercentuali = [];
           var totSales = totaleVendite(arrayImporti)
           for (var i = 0; i < arrayImporti.length; i++) {
-            arrayPercentuali.push(Math.ceil((arrayImporti[i] / totSales)*100))
+            var num = (arrayImporti[i] / totSales)*100;
+            var numDueDecimali = num.toFixed(2);
+            arrayPercentuali.push(numDueDecimali);
           }
           console.log(arrayPercentuali)
           console.log(arrayVenditori);
