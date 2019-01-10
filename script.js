@@ -32,7 +32,7 @@ $(document).ready(function(){
                     label: "My First dataset",
                     backgroundColor: '',
                     borderColor: 'rgb(255, 99, 132)',
-                    data: [0, 10, 5, 2, 20, 30, 45],
+                    data: arrayImporti,
                 }]
             },
 
