@@ -8,13 +8,19 @@ $(document).ready(function(){
 
         var arrayMesi = [];
         var arrayImporti = [];
+
         for (var i = 0; i < data.length; i++) {
           var dataApi = data[i].date;
-          var importiApi = data[i].amount
+          var importiApi = data[i].amount;
           var prendiMese = moment(dataApi);//moment(dataApi, 'DD/MM/YYYY');
           var meseVendita = prendiMese.format('MMMM'); //il problema è nel formato, dovrei riuscire a dire a moment.js che la data che riceve è nel formato DD/MM/YYYY e poi pushare il solo mese MMMM
-          arrayMesi.push(meseVendita);
-          arrayImporti.push(importiApi);
+
+          if (!arrayMesi.includes(meseVendita) && !arrayImporti.includes(importiApi)) {
+
+            arrayMesi.push(meseVendita);
+            arrayImporti.push(importiApi);
+
+          } 
         }
 
         console.log(arrayMesi);
