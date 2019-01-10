@@ -6,8 +6,22 @@ $(document).ready(function(){
       success: function(data){
 
 
-        var arrayMesi = [];
-        var arrayImporti = [];
+        // var arrayMesi = [];
+        // var arrayImporti = [];
+        var oggettoVendite = {
+            January: 0,
+            February: 0,
+            March: 0,
+            April: 0,
+            May: 0,
+            June: 0,
+            July: 0,
+            August: 0,
+            September: 0,
+            October: 0,
+            November: 0,
+            December: 0
+        };
 
         for (var i = 0; i < data.length; i++) {
           var dataApi = data[i].date;
@@ -15,13 +29,18 @@ $(document).ready(function(){
           var prendiMese = moment(dataApi, 'DD/MM/YYYY');
           var meseVendita = prendiMese.format('MMMM');
 
-          if (!arrayMesi.includes(meseVendita) && !arrayImporti.includes(importiApi)) {
+          oggettoVendite[meseVendita] += importiApi
 
-            arrayMesi.push(meseVendita);
-            arrayImporti.push(importiApi);
-
-          }
         }
+
+          var arrayMesi = [];
+          var arrayImporti = [];
+
+          for (var mese in oggettoVendite) {
+            arrayMesi.push(mese);
+            arrayImporti.push(oggettoVendite[mese])
+          }
+
 
         console.log(arrayMesi);
         console.log(arrayImporti);
