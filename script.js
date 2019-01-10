@@ -78,22 +78,30 @@ $(document).ready(function(){
         method: 'GET',
         success: function(data){
 
-
-          var arrayVenditori = [];
-          var arrayImporti = [];
-
+          var oggettoProcessato = {}
 
           for (var i = 0; i < data.length; i++) {
             var vendorsApi = data[i].salesman;
             var importiApi = data[i].amount;
 
 
-            if (!arrayVenditori.includes(vendorsApi) && !arrayImporti.includes(importiApi)) {
+            if (oggettoProcessato[vendorsApi] == undefined) {
 
-              arrayVenditori.push(vendorsApi);
-              arrayImporti.push(importiApi);
+              oggettoProcessato[vendorsApi] = 0;
 
             }
+
+            oggettoProcessato[vendorsApi] += importiApi;
+
+          }
+
+          var arrayVenditori = [];
+          var arrayImporti = [];
+
+          for (var nomeVenditore in oggettoProcessato) {
+
+            arrayVenditori.push(nomeVenditore);
+            arrayImporti.push(oggettoProcessato[nomeVenditore]);
 
           }
 
