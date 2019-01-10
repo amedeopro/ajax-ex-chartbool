@@ -12,5 +12,19 @@
 .container{
   width: 50%;
   float: left;
+}
 
+.inserimentoNuovo{
+  width: 50%;
+  margin: auto;
+  margin-bottom: 50px;
+}
+
+#myButton{
+  background-color: blue;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
 }

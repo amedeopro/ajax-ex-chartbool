@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+
   var apiUrl = 'http://157.230.17.132:4013/sales';
   $.ajax({
       url: apiUrl,
@@ -13,6 +15,31 @@ $(document).ready(function(){
         alert('errore');
       }
     })
+
+    $('#myButton').click(function(){
+      var venditoreScelto = $('.venditori').val();
+      var meseScelto = $('.mesi').val();
+      var importoScelto  = $('#nuovaVendita').val();
+      $.ajax({
+          url: apiUrl,
+          method: 'POST',
+          data:{
+            salesman: venditoreScelto,
+            date: meseScelto,
+            amount: importoScelto
+          },
+          success: function(data){
+
+              graficoLine(data);
+              graficoPie(data);
+
+          },
+          error: function(){
+            alert('errore');
+          }
+        })
+    })
+
 
 
       function totaleVendite(array){
@@ -59,10 +86,6 @@ $(document).ready(function(){
                     arrayMesi.push(mese);
                     arrayImporti.push(oggettoVendite[mese])
                   }
-
-
-                console.log(arrayMesi);
-                console.log(arrayImporti);
 
                 var ctx = $('#myChart');
                 var chart = new Chart(ctx, {
@@ -114,6 +137,11 @@ $(document).ready(function(){
 
                   }
 
+                  for (var i = 0; i < arrayVenditori.length; i++) {
+                    $('.venditori').append('<option>' + arrayVenditori[i] + '</option>' )
+                    arrayVenditori[i]
+                  }
+
                   var arrayPercentuali = [];
                   var totSales = totaleVendite(arrayImporti)
                   for (var i = 0; i < arrayImporti.length; i++) {
@@ -121,10 +149,6 @@ $(document).ready(function(){
                     var numDueDecimali = num.toFixed(2);
                     arrayPercentuali.push(numDueDecimali);
                   }
-                  console.log(arrayPercentuali)
-                  console.log(arrayVenditori);
-                  console.log(arrayImporti);
-                  console.log(totaleVendite(arrayImporti));
 
                   var ctx = $('#myChart2');
                   var chart = new Chart(ctx, {
@@ -143,11 +167,9 @@ $(document).ready(function(){
                       },
 
                       // Configuration options go here
-                      options: {
-                        cutoutPercentage: 20,
-                      }
+                      options: {}
                   });
-      }
+                }
 
 
 
