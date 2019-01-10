@@ -7,14 +7,18 @@ $(document).ready(function(){
 
 
         var arrayMesi = [];
+        var arrayImporti = [];
         for (var i = 0; i < data.length; i++) {
           var dataApi = data[i].date;
-          var prendiMese = moment(dataApi);
-          var meseVendita = prendiMese.format('DD/MMMM/YYYY'); //il problema è nel formato, dovrei riuscire a dire a moment.js che la data che riceve è nel formato DD/MM/YYYY e poi pushare il solo mese MMMM
-          arrayMesi.push(meseVendita)
+          var importiApi = data[i].amount
+          var prendiMese = moment(dataApi);//moment(dataApi, 'DD/MM/YYYY');
+          var meseVendita = prendiMese.format('DD/MM/YYYY'); //il problema è nel formato, dovrei riuscire a dire a moment.js che la data che riceve è nel formato DD/MM/YYYY e poi pushare il solo mese MMMM
+          arrayMesi.push(meseVendita);
+          arrayImporti.push(importiApi);
         }
 
         console.log(arrayMesi);
+        console.log(arrayImporti);
 
         var ctx = $('#myChart');
         var chart = new Chart(ctx, {
@@ -26,7 +30,7 @@ $(document).ready(function(){
                 labels: arrayMesi,//["January", "February", "March", "April", "May", "June", "July"],
                 datasets: [{
                     label: "My First dataset",
-                    backgroundColor: 'rgb(255, 99, 132)',
+                    backgroundColor: '',
                     borderColor: 'rgb(255, 99, 132)',
                     data: [0, 10, 5, 2, 20, 30, 45],
                 }]
